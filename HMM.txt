@@ -1,0 +1,34 @@
+S = {D, N}
+V = {the, dog}
+
+q(D|*,*) = 1
+q(N|*,D) = 1
+q(STOP|D,N) = 1
+q(s|u,v) = 0 for all other q params
+
+e(the|D) = 0.9
+e(dog|D) = 0.1
+e(dog|N) = 1
+
+
+valid tag sequences:
+D N STOP
+
+valid sentences:
+the dog
+dog dog
+
+Valid pairs of both = 2 * 1
+
+==============
+
+S = {D, N, V}
+V = {the, cat, drinks, milk, dog}
+
+q(s|u,v) = 1/4 for all s,u,v
+e(x|s) = 1/5 for all tags s and words x
+
+p(the cat drinks milk, D N V N STOP) = ?
+= q(D|*,*) x q(N|*,D) x q(V|D,N) x q(N|N,V) x q(STOP|V,N)
+x e(the|D) x e(cat|N) x e(drinks|V) x e(milk|N)
+= (1/4 * 5) x (1/5 * 4) = 1
