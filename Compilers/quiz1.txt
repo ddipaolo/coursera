@@ -18,3 +18,52 @@ Quiz 1:
 1101
 1110
 1111
+
+2.
+abbbaacc
+-> ab / bb / a / acc
+
+c*, b+, ab, ac* = ab / bb / a / acc  (OK)
+ab, b+, ac*     = ab / bb / a / acc (OK)
+a(b+c*), b+     = ab / bb / a / acc (OK)
+b+, ab*, ac*    = abbb/ a / acc (XX)
+
+
+5.
+L_1 = { 011 }
+
+DFA =
+
+S ->0 A ->1 B ->1 C (accept)
+
+4 states
+(3n+1)
+
+7.
+S ->a A ->d F (accept)
+      ->b B ->c A
+
+SABF  (4 states)
+
+8.
+a(ba)*
+b*(ab)*
+abd
+d+
+
+ababddababa = aba / b / dd / aba
+babad = bab / a / d
+dddabbabab = ddd / ab / babab
+ababddd = aba / abd / d
+   Answer says = abab / dddd   (what tokenizes to abab??)
+
+9.
+(00)*
+01+
+10+
+
+0001101 = 00 / 011 / 01  (OK)
+0111110 = 011111 / 0 (XX)
+01100100 = 011 / 00 / 100 (OK)
+01100110 = 011 / 00 / 110 (XX)
+
