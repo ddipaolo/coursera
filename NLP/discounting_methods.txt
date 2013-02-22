@@ -1,0 +1,43 @@
+Assume that we are given a corpus with the following properties:
+
+ * Count(the) = 70
+ * |{w: c(the, w) > 0}| = 15, ie, there are 15 different words that follow "the"
+
+Further more assume that the discounted counts are defined as c*(the, w) =
+c(the, w) - 0.3.  Under this corpus, what is the missing probability mass,
+alpha(the), to three decimal places?
+
+
+(15 * 0.3)/70 = 4.5 / 70
+
+
+===========
+
+Let's return to a smaller version of our corpus
+
+   the book STOP
+   his house STOP
+
+This time we compute a bigram language model using Katz back-off with
+
+c*(v,w) = c(v,w) - 0.5
+
+What is the value of q_BO(book|his) estimated from this corpus?
+
+q_BO(book|his) = alpha(his) * (q_ML(book) / [q_ML(the) + q_ML(book) + q_ML(house) + q_ML(STOP)])
+
+q_ML(book) = Count(book) / Count()  [or is it Count*(book)?]
+            = 1 / 6   (= 0.5 / 6)
+q_ML(the) = Count(the) / Count()  [or is it Count*(the)?]
+            = 1 / 6  (= 0.5 / 6)
+q_ML(house) = Count(house) / Count()  [or is it Count*(house)?]
+            = 1 / 6  (= 0.5 / 6)
+q_ML(STOP) = Count(STOP) / Count()  [or is it Count*(STOP)?]
+           = 2 / 6  (= 1.5 / 6)
+
+alpha(his) = 1 - Count*(his, house) / Count(house)
+           = 1 - (0.5 / 1)
+           = 0.5
+
+
+q_BO(book|his) = 0.5 * ((1/6) / (5/6)) = 0.5 * 1/5 = 0.1
